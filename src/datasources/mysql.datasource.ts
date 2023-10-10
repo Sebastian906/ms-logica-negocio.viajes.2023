@@ -5,11 +5,11 @@ const config = {
   name: 'mysql',
   connector: 'mysql',
   url: '',
-  host: 'localhost',
+  host: 'databasemysqlaws.cazjwg99dnro.us-east-2.rds.amazonaws.com',
   port: 3306,
-  user: 'root',
-  password: 'dC>7i~^&6}rNBUh',
-  database: 'ViajesDB'
+  user: 'admin',
+  password: 'Admin12345',
+  database: 'ViajesDB',
 };
 
 // Observe application's life cycle to disconnect the datasource when
@@ -17,8 +17,10 @@ const config = {
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
-export class MysqlDataSource extends juggler.DataSource
-  implements LifeCycleObserver {
+export class MysqlDataSource
+  extends juggler.DataSource
+  implements LifeCycleObserver
+{
   static dataSourceName = 'mysql';
   static readonly defaultConfig = config;
 
