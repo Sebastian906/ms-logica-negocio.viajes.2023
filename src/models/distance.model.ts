@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Request} from './request.model';
+import {Travel} from './travel.model';
 
 @model()
 export class Distance extends Entity {
@@ -33,6 +35,21 @@ export class Distance extends Entity {
   })
   idRequest: number;
 
+  @hasOne(() => Request)
+  request: Request;
+
+  @property({
+    type: 'number',
+  })
+  requestId?: number;
+
+  @property({
+    type: 'number',
+  })
+  travelId?: number;
+
+  @hasOne(() => Travel)
+  travel: Travel;
 
   constructor(data?: Partial<Distance>) {
     super(data);

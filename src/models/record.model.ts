@@ -1,4 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Travel} from './travel.model';
+import {Passenger} from './passenger.model';
+import {Driver} from './driver.model';
 
 @model()
 export class Record extends Entity {
@@ -38,6 +41,29 @@ export class Record extends Entity {
   })
   idDriver: number;
 
+  @property({
+    type: 'number',
+  })
+  travelId?: number;
+
+  @hasOne(() => Travel)
+  travel: Travel;
+
+  @property({
+    type: 'number',
+  })
+  passengerId?: number;
+
+  @hasOne(() => Passenger)
+  passenger: Passenger;
+
+  @hasOne(() => Driver)
+  driver: Driver;
+
+  @property({
+    type: 'number',
+  })
+  driverId?: number;
 
   constructor(data?: Partial<Record>) {
     super(data);

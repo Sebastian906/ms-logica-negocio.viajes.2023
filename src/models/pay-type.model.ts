@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne} from '@loopback/repository';
+import {PayMethod} from './pay-method.model';
 
 @model()
 export class PayType extends Entity {
@@ -21,6 +22,13 @@ export class PayType extends Entity {
   })
   idPayMethod: number;
 
+  @property({
+    type: 'number',
+  })
+  payMethodId?: number;
+
+  @hasOne(() => PayMethod)
+  payMethod: PayMethod;
 
   constructor(data?: Partial<PayType>) {
     super(data);

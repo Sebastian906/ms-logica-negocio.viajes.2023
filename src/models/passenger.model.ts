@@ -1,4 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {PayMethod} from './pay-method.model';
+import {Record} from './record.model';
+import {Request} from './request.model';
 
 @model()
 export class Passenger extends Entity {
@@ -63,6 +66,19 @@ export class Passenger extends Entity {
   })
   contact: string;
 
+  @hasMany(() => PayMethod)
+  payMethods: PayMethod[];
+
+  @hasOne(() => Record)
+  record: Record;
+
+  @property({
+    type: 'number',
+  })
+  recordId?: number;
+
+  @hasMany(() => Request)
+  requests: Request[];
 
   constructor(data?: Partial<Passenger>) {
     super(data);

@@ -1,4 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasOne, belongsTo} from '@loopback/repository';
+import {Distance} from './distance.model';
+import {Request} from './request.model';
+import {Record} from './record.model';
+import {PayMethod} from './pay-method.model';
 
 @model()
 export class Travel extends Entity {
@@ -44,6 +48,32 @@ export class Travel extends Entity {
   })
   idPayMethod: number;
 
+  @hasOne(() => Distance)
+  distance: Distance;
+
+  @property({
+    type: 'number',
+  })
+  distanceId?: number;
+
+  @hasOne(() => Request)
+  request: Request;
+
+  @property({
+    type: 'number',
+  })
+  requestId?: number;
+
+  @hasOne(() => Record)
+  record: Record;
+
+  @property({
+    type: 'number',
+  })
+  recordId?: number;
+
+  @belongsTo(() => PayMethod)
+  payMethodId: number;
 
   constructor(data?: Partial<Travel>) {
     super(data);
