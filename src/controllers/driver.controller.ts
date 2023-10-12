@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -7,23 +8,24 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 import {Driver} from '../models';
 import {DriverRepository} from '../repositories';
 
 export class DriverController {
   constructor(
     @repository(DriverRepository)
-    public driverRepository : DriverRepository,
+    public driverRepository: DriverRepository,
   ) {}
 
   @post('/driver')
@@ -52,12 +54,17 @@ export class DriverController {
     description: 'Driver model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Driver) where?: Where<Driver>,
-  ): Promise<Count> {
+  async count(@param.where(Driver) where?: Where<Driver>): Promise<Count> {
     return this.driverRepository.count(where);
   }
 
+  @authenticate({
+    strategy: 'auth',
+    options: [
+      ConfiguracionSeguridad.permissionsUsuario,
+      ConfiguracionSeguridad.listarAccion,
+    ],
+  })
   @get('/driver')
   @response(200, {
     description: 'Array of Driver model instances',
@@ -70,9 +77,7 @@ export class DriverController {
       },
     },
   })
-  async find(
-    @param.filter(Driver) filter?: Filter<Driver>,
-  ): Promise<Driver[]> {
+  async find(@param.filter(Driver) filter?: Filter<Driver>): Promise<Driver[]> {
     return this.driverRepository.find(filter);
   }
 
@@ -106,7 +111,8 @@ export class DriverController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Driver, {exclude: 'where'}) filter?: FilterExcludingWhere<Driver>
+    @param.filter(Driver, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Driver>,
   ): Promise<Driver> {
     return this.driverRepository.findById(id, filter);
   }

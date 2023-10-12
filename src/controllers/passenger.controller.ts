@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -7,23 +8,24 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 import {Passenger} from '../models';
 import {PassengerRepository} from '../repositories';
 
 export class PassengerController {
   constructor(
     @repository(PassengerRepository)
-    public passengerRepository : PassengerRepository,
+    public passengerRepository: PassengerRepository,
   ) {}
 
   @post('/passenger')
@@ -57,7 +59,13 @@ export class PassengerController {
   ): Promise<Count> {
     return this.passengerRepository.count(where);
   }
-
+  @authenticate({
+    strategy: 'auth',
+    options: [
+      ConfiguracionSeguridad.permissionsUsuario,
+      ConfiguracionSeguridad.listarAccion,
+    ],
+  })
   @get('/passenger')
   @response(200, {
     description: 'Array of Passenger model instances',
@@ -106,7 +114,8 @@ export class PassengerController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Passenger, {exclude: 'where'}) filter?: FilterExcludingWhere<Passenger>
+    @param.filter(Passenger, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Passenger>,
   ): Promise<Passenger> {
     return this.passengerRepository.findById(id, filter);
   }
