@@ -21,13 +21,13 @@ export class Request extends Entity {
   requestDate: string;
 
   @property({
-    type: 'geopoint',
+    type: 'string',
     required: true,
   })
   pickup: string;
 
   @property({
-    type: 'geopoint',
+    type: 'string',
     required: true,
   })
   destination: string;

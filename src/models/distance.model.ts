@@ -12,13 +12,13 @@ export class Distance extends Entity {
   idDistance?: number;
 
   @property({
-    type: 'geopoint',
+    type: 'string',
     required: true,
   })
   origin: string;
 
   @property({
-    type: 'geopoint',
+    type: 'string',
     required: true,
   })
   finish: string;
