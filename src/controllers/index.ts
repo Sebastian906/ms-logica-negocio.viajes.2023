@@ -35,3 +35,4 @@ export * from './passenger.controller';
 export * from './record.controller';
 export * from './pay-method.controller';
 export * from './pay-type.controller';
+export * from './administrador-de-archivos.controller';
