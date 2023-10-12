@@ -36,18 +36,6 @@ export class Travel extends Entity {
   })
   comment?: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idRequest: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idPayMethod: number;
-
   @hasOne(() => Distance)
   distance: Distance;
 

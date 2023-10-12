@@ -29,11 +29,6 @@ export class Distance extends Entity {
   })
   longitude: number;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idRequest: number;
 
   @hasOne(() => Request)
   request: Request;

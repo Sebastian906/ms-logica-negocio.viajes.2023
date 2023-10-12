@@ -25,24 +25,6 @@ export class Record extends Entity {
 
   @property({
     type: 'number',
-    required: true,
-  })
-  idTravel: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idPassenger: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idDriver: number;
-
-  @property({
-    type: 'number',
   })
   travelId?: number;
 

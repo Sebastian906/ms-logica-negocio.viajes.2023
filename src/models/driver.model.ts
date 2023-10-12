@@ -49,12 +49,6 @@ export class Driver extends Entity {
   dni: string;
 
   @property({
-    type: 'number',
-    required: true,
-  })
-  Idcar: number;
-
-  @property({
     type: 'string',
     required: true,
   })

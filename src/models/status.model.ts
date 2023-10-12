@@ -16,12 +16,6 @@ export class Status extends Entity {
   })
   stateRequest: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idRequest: number;
-
   @hasOne(() => Request)
   request: Request;
 

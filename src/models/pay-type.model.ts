@@ -18,12 +18,6 @@ export class PayType extends Entity {
 
   @property({
     type: 'number',
-    required: true,
-  })
-  idPayMethod: number;
-
-  @property({
-    type: 'number',
   })
   payMethodId?: number;
 

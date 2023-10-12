@@ -32,18 +32,6 @@ export class Request extends Entity {
   })
   destination: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idDriver: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idPassenger: number;
-
   @hasMany(() => Driver)
   drivers: Driver[];
 

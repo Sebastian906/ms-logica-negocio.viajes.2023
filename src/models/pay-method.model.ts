@@ -29,12 +29,6 @@ export class PayMethod extends Entity {
   })
   cardNumber?: number;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
-  idPassenger: number;
-
   @hasMany(() => Travel)
   travels: Travel[];
 
