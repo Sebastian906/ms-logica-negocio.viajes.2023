@@ -5,7 +5,36 @@ import {Distance} from './distance.model';
 import {Travel} from './travel.model';
 import {Passenger} from './passenger.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_request_passenger: {
+        name: 'fk_request_passenger',
+        entity: 'Passenger',
+        entityKey: 'idPassenger',
+        foreignKey: 'passengerId',
+      },
+      fk_request_status: {
+        name: 'fk_request_status',
+        entity: 'Status',
+        entityKey: 'idState',
+        foreignKey: 'statusId',
+      },
+      fk_request_distance: {
+        name: 'fk_request_distance',
+        entity: 'Distance',
+        entityKey: 'idDistance',
+        foreignKey: 'distanceId',
+      },
+      fk_request_travel: {
+        name: 'fk_request_travel',
+        entity: 'Travel',
+        entityKey: 'idTravel',
+        foreignKey: 'travelId',
+      },
+    },
+  },
+})
 export class Request extends Entity {
   @property({
     type: 'number',

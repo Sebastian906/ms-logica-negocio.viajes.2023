@@ -3,7 +3,30 @@ import {Car} from './car.model';
 import {Request} from './request.model';
 import {Record} from './record.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_driver_car: {
+        name: 'fk_driver_car',
+        entity: 'Car',
+        entityKey: 'idCar',
+        foreignKey: 'carId',
+      },
+      fk_driver_request: {
+        name: 'fk_driver_request',
+        entity: 'Request',
+        entityKey: 'idRequest',
+        foreignKey: 'requestId',
+      },
+      fk_driver_record: {
+        name: 'fk_driver_record',
+        entity: 'Record',
+        entityKey: 'idRecord',
+        foreignKey: 'recordId',
+      },
+    },
+  },
+})
 export class Driver extends Entity {
   @property({
     type: 'number',

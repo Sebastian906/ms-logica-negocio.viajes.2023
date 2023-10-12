@@ -2,7 +2,24 @@ import {Entity, model, property, hasOne} from '@loopback/repository';
 import {Request} from './request.model';
 import {Travel} from './travel.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_distance_request: {
+        name: 'fk_distance_request',
+        entity: 'Request',
+        entityKey: 'idRequest',
+        foreignKey: 'requestId',
+      },
+      fk_distance_travel: {
+        name: 'fk_distance_travel',
+        entity: 'Travel',
+        entityKey: 'idTravel',
+        foreignKey: 'travelId',
+      },
+    },
+  },
+})
 export class Distance extends Entity {
   @property({
     type: 'number',

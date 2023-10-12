@@ -4,7 +4,36 @@ import {Request} from './request.model';
 import {Record} from './record.model';
 import {PayMethod} from './pay-method.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_travel_distance: {
+        name: 'fk_travel_distance',
+        entity: 'Distance',
+        entityKey: 'idDistance',
+        foreignKey: 'distanceId',
+      },
+      fk_travel_request: {
+        name: 'fk_travel_request',
+        entity: 'Request',
+        entityKey: 'idRequest',
+        foreignKey: 'requestId',
+      },
+      fk_travel_record: {
+        name: 'fk_travel_record',
+        entity: 'Record',
+        entityKey: 'idRecord',
+        foreignKey: 'recordId',
+      },
+      fk_travel_pay_method: {
+        name: 'fk_travel_pay_method',
+        entity: 'PayMethod',
+        entityKey: 'idPayMethod',
+        foreignKey: 'payMethodId',
+      },
+    },
+  },
+})
 export class Travel extends Entity {
   @property({
     type: 'number',
